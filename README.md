@@ -119,7 +119,7 @@ The `overrides` field in `package.json` keeps the development install on a singl
 
 ### Publishing
 
-The [publish workflow](.github/workflows/publish.yml) publishes to npm when a version tag such as `v0.1.0` is pushed. The tag must match the version in `package.json`. Publishing runs `npm run check` through the `prepublishOnly` script, so a failed type check or test prevents the release. Stable versions use the `latest` npm dist-tag; prereleases such as `v0.2.0-beta.1` use `next`.
+The [publish workflow](.github/workflows/publish.yml) stages a package on npm when a version tag such as `v0.1.0` is pushed. The tag must match the version in `package.json`. Staging runs `npm run check` through the `prepublishOnly` script, so a failed type check or test prevents the upload. Stable versions use the `latest` npm dist-tag; prereleases such as `v0.2.0-beta.1` use `next`. The staged package becomes publicly available only after a maintainer reviews and approves it with 2FA.
 
 Before the first automated release, configure a [trusted publisher](https://docs.npmjs.com/trusted-publishers/) in the npm settings for `pi-lithosai`:
 
@@ -128,11 +128,22 @@ Before the first automated release, configure a [trusted publisher](https://docs
 - Repository: `pi-lithosai`
 - Workflow filename: `publish.yml`
 - Environment name: leave empty
-- Allowed actions: enable direct publishing with `npm publish`
+- Allowed actions: allow `npm stage publish` only; leave direct publishing with `npm publish` and dist-tag management disabled
 
-If the package does not exist on npm yet, publish its first version locally with `npm publish --access public`, then configure the trusted publisher for subsequent releases. The workflow authenticates with OIDC and does not require an npm token secret. Complete the first automated publish within two days of creating the trusted publisher configuration to prevent it from expiring.
+If the package does not exist on npm yet, sign in locally with `npm login`, stage its first version with `npm stage publish --access public --tag latest`, and approve it as described below. Then configure the trusted publisher for subsequent releases. The workflow authenticates with OIDC and does not require an npm token secret. Complete the first automated release within two days of creating the trusted publisher configuration to prevent it from expiring.
 
-For each release, update and commit `package.json` and `package-lock.json`, then create and push the matching version tag. For example, `npm version patch` creates a version commit and tag; push the commit and that specific tag to trigger publishing.
+For each release, update and commit `package.json` and `package-lock.json`, then create and push the matching version tag. For example, `npm version patch` creates a version commit and tag; push the commit and that specific tag to trigger staging.
+
+After the workflow succeeds, review the staged package in npm's **Staged Packages** tab, or use the CLI while signed in as a maintainer:
+
+```bash
+npm stage list pi-lithosai
+npm stage view <stage-id>
+npm stage download <stage-id>  # download the tarball for inspection
+npm stage approve <stage-id>   # publish after 2FA verification
+```
+
+Use the stage ID from the workflow output or `npm stage list`. Approval publishes the staged artifact with its selected `latest` or `next` dist-tag.
 
 ### Updating the catalog
 
