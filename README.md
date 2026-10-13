@@ -117,6 +117,23 @@ Tests use temporary catalogs, fake API keys, and mocked HTTP responses. They do 
 
 The `overrides` field in `package.json` keeps the development install on a single copy of each Pi 1.1.0 package. Without it, npm can install a newer, nested `@earendil-works/pi-ai`, which breaks the tests. It does not affect users who install the package.
 
+### Publishing
+
+The [publish workflow](.github/workflows/publish.yml) publishes to npm when a version tag such as `v0.1.0` is pushed. The tag must match the version in `package.json`. Publishing runs `npm run check` through the `prepublishOnly` script, so a failed type check or test prevents the release. Stable versions use the `latest` npm dist-tag; prereleases such as `v0.2.0-beta.1` use `next`.
+
+Before the first automated release, configure a [trusted publisher](https://docs.npmjs.com/trusted-publishers/) in the npm settings for `pi-lithosai`:
+
+- Provider: GitHub Actions
+- Organization or user: `WKBae`
+- Repository: `pi-lithosai`
+- Workflow filename: `publish.yml`
+- Environment name: leave empty
+- Allowed actions: enable direct publishing with `npm publish`
+
+If the package does not exist on npm yet, publish its first version locally with `npm publish --access public`, then configure the trusted publisher for subsequent releases. The workflow authenticates with OIDC and does not require an npm token secret. Complete the first automated publish within two days of creating the trusted publisher configuration to prevent it from expiring.
+
+For each release, update and commit `package.json` and `package-lock.json`, then create and push the matching version tag. For example, `npm version patch` creates a version commit and tag; push the commit and that specific tag to trigger publishing.
+
 ### Updating the catalog
 
 The authenticated [LithosAI Console models page](https://console.lithosai.cloud/models) requests [`https://console.lithosai.cloud/api/models`](https://console.lithosai.cloud/api/models). Its JSON response has exactly the format used by `src/models.json`, including the top-level `models` array, so no field conversion is needed.
