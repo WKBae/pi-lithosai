@@ -1,5 +1,12 @@
 # pi-lithosai
 
+[![npm version](https://img.shields.io/npm/v/pi-lithosai.svg)](https://www.npmjs.com/package/pi-lithosai)
+[![npm downloads](https://img.shields.io/npm/dm/pi-lithosai.svg)](https://www.npmjs.com/package/pi-lithosai)
+[![license](https://img.shields.io/npm/l/pi-lithosai.svg)](https://github.com/WKBae/pi-lithosai/blob/main/LICENSE)
+[![node](https://img.shields.io/node/v/pi-lithosai.svg)](https://www.npmjs.com/package/pi-lithosai)
+[![pi](https://img.shields.io/badge/pi-%3E%3D1.1.0-blue.svg)](https://github.com/earendil-works/pi)
+[![GitHub stars](https://img.shields.io/github/stars/WKBae/pi-lithosai.svg?style=flat)](https://github.com/WKBae/pi-lithosai/stargazers)
+
 A [LithosAI](https://docs.lithosai.com) model provider for Pi. Model metadata comes from a catalog bundled with the package. Responses stream through LithosAI's OpenAI-compatible `POST /chat/completions` endpoint, using Pi's built-in OpenAI Chat Completions implementation for message conversion, tool calls, reasoning, usage accounting, and cancellation.
 
 Requires Pi 1.1.0 or later and Node.js 22.19.0 or later.
