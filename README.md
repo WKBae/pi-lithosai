@@ -74,6 +74,10 @@ The extension registers models with `status: "available"` and the `chat` capabil
 
 The catalog stores prices in microdollars per million tokens. Pi stores prices in dollars per million tokens, so the extension divides them by 1,000,000. The catalog has no cache-write price, so the extension sets it to zero.
 
+### Prompt cache
+
+The extension declares a five-minute prompt cache lifetime (`promptCache: { short: 300, long: 300 }`) on every model it registers. Pi reads that lifetime only to decide whether to keep the prompt cache warm; it does not add cache fields to the requests the extension sends. Neither `prompt_cache_key` nor `prompt_cache_retention` is sent, so any prompt caching on LithosAI is the gateway's own. By default, Pi warms the cache only when the `cacheWarming` setting is `streaming` or `idle` and it estimates at least $0.05 in avoided cache-miss cost; an extension can override that decision. See [Prompt Cache Lifetimes](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/models.md#prompt-cache-lifetimes) and [Settings](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/settings.md#model-and-thinking) in the Pi documentation.
+
 ### Reasoning levels
 
 Reasoning models with `mark` set to `"deepseek"`, `"zai"`, or `"kimi"` support exactly three levels: `low`, `high`, and `max`. **Reasoning cannot be turned off for these models.** Pi changes an unsupported `--thinking` value to a supported level.

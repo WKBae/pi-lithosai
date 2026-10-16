@@ -17,6 +17,7 @@ test("maps catalog names, capabilities, token limits, and microdollar prices", (
   assert.equal(model.contextWindow, 32768);
   assert.equal(model.maxTokens, 4096);
   assert.deepEqual(model.cost, { input: 0.15, output: 0.6, cacheRead: 0.003, cacheWrite: 0 });
+  assert.deepEqual(model.promptCache, { short: 300, long: 300 });
   assert.equal(buildModel(catalogModel()).reasoning, false);
   assert.deepEqual(buildModel(catalogModel()).input, ["text"]);
 });
@@ -45,6 +46,7 @@ test("loads the full local catalog at startup without credentials or refresh", (
   const catalog = readModelsFile();
   assert.deepEqual(provider.getModels().map((model) => model.id), catalog.map((model) => model.modelId));
   for (const [index, entry] of catalog.entries()) {
+    assert.deepEqual(provider.getModels()[index]!.promptCache, { short: 300, long: 300 });
     if (entry.capabilities.includes("reasoning") && ["deepseek", "zai", "kimi"].includes(entry.mark ?? "")) {
       assert.deepEqual(getSupportedThinkingLevels(provider.getModels()[index]!), ["low", "high", "max"]);
     }
