@@ -1,6 +1,6 @@
 {
   "name": "pi-lithosai",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "LithosAI model provider for Pi",
   "type": "module",
   "license": "MIT",
