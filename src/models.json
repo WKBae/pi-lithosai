@@ -89,6 +89,35 @@
         },
         {
             "activeParameters": 16000000000,
+            "advertisedOutputTps": 450,
+            "cachedInputMicros": 7000,
+            "capabilities": [
+                "chat",
+                "vision",
+                "tools",
+                "json_mode",
+                "reasoning"
+            ],
+            "contextTokens": 1048576,
+            "description": "DeepSeek V4.1 Flash, tuned for short-context chat applications, not coding agents.",
+            "displayName": "DeepSeek V4.1 Flash (Ultra Chat)",
+            "externalUrl": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+            "inputMicros": 350000,
+            "listCachedInputMicros": 14000,
+            "listInputMicros": 700000,
+            "listOutputMicros": 2800000,
+            "mark": "deepseek",
+            "maxOutputTokens": 32768,
+            "modelId": "deepseek-ai/DeepSeek-V4.1-Flash-ultra-chat",
+            "outputMicros": 1400000,
+            "parameters": 552000000000,
+            "provider": "DeepSeek",
+            "releasedAt": "2026-10-17",
+            "slug": "deepseek-v4-1-flash-ultra-chat",
+            "status": "available"
+        },
+        {
+            "activeParameters": 16000000000,
             "advertisedOutputTps": 250,
             "cachedInputMicros": 3000,
             "capabilities": [
@@ -173,35 +202,6 @@
             "releasedAt": "2026-09-10",
             "slug": "deepseek-v4-1-flash-0910-ultra",
             "status": "deprecated"
-        },
-        {
-            "activeParameters": 16000000000,
-            "advertisedOutputTps": 450,
-            "cachedInputMicros": 7000,
-            "capabilities": [
-                "chat",
-                "vision",
-                "tools",
-                "json_mode",
-                "reasoning"
-            ],
-            "contextTokens": 1048576,
-            "description": "DeepSeek V4.1 Flash, tuned for short-context chat applications, not coding agents.",
-            "displayName": "DeepSeek V4.1 Flash (Ultra Chat)",
-            "externalUrl": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
-            "inputMicros": 350000,
-            "listCachedInputMicros": 14000,
-            "listInputMicros": 700000,
-            "listOutputMicros": 2800000,
-            "mark": "deepseek",
-            "maxOutputTokens": 32768,
-            "modelId": "deepseek-ai/DeepSeek-V4.1-Flash-ultra-chat",
-            "outputMicros": 1400000,
-            "parameters": 552000000000,
-            "provider": "DeepSeek",
-            "releasedAt": "2026-09-10",
-            "slug": "deepseek-v4-1-flash-ultra-chat",
-            "status": "available"
         },
         {
             "activeParameters": 39000000000,
