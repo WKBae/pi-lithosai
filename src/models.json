@@ -293,36 +293,6 @@
             "releasedAt": "2026-08-25",
             "slug": "glm-5-3-ultra-chat",
             "status": "available"
-        },
-        {
-            "activeParameters": 104000000000,
-            "advertisedOutputTps": 250,
-            "cachedInputMicros": 560000,
-            "capabilities": [
-                "chat",
-                "vision",
-                "tools",
-                "json_mode",
-                "structured_outputs",
-                "reasoning"
-            ],
-            "contextTokens": 1048576,
-            "description": "Kimi K3, tuned for short-context chat applications, not coding agents.",
-            "displayName": "Kimi K3 (Ultra Chat)",
-            "externalUrl": "https://huggingface.co/moonshotai/Kimi-K3",
-            "inputMicros": 5600000,
-            "listCachedInputMicros": null,
-            "listInputMicros": null,
-            "listOutputMicros": null,
-            "mark": "kimi",
-            "maxOutputTokens": 32768,
-            "modelId": "moonshotai/Kimi-K3-ultra-chat",
-            "outputMicros": 28000000,
-            "parameters": 2800000000000,
-            "provider": "Moonshot AI",
-            "releasedAt": "2026-07-27",
-            "slug": "kimi-k3-ultra-chat",
-            "status": "available"
         }
     ]
 }
